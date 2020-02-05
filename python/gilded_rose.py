@@ -8,21 +8,20 @@ class GildedRose(object):
     def update_quality(self):
 
         for item in self.items:
-            if item.category == "collectors":
+            item.sell_in -=1
+           
+           if item.category == "collectors":
                 item.quality = item.quality
 
             if item.category == "others": 
-                    item.sell_in -=  1
-                    item.quality -= 1
-                    if item.sell_in < 0:
-                        item.quality = 0
+                item.quality -= 1
+                if item.sell_in < 0:
+                    item.quality = 0
 
             if item.category == "cheeses" and item.quality < 50:
-                    item.sell_in -= 1
-                    item.quality += 2
+                item.quality += 2
 
             if item.category == "events" and item.quality < 50:
-                item.sell_in -= 1
                 if item.sell_in < 11:
                     item.quality += 2
                 if item.sell_in < 6:
@@ -31,8 +30,6 @@ class GildedRose(object):
                     item.quality = 0
 
    
-
-
 '''
         for item in self.items:
             if item.category != "cheeses" and item.category != "events":
