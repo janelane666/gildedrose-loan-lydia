@@ -10,11 +10,13 @@ class GildedRose(object):
         for item in self.items:
             item.sell_in -=1
            
-           if item.category == "collectors":
+            if item.category == "collectors":
                 item.quality = item.quality
 
             if item.category == "others": 
                 item.quality -= 1
+                if "Conjured" in item.name:
+                    item.quality -= 1
                 if item.sell_in < 0:
                     item.quality = 0
 
